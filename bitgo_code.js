@@ -2,7 +2,7 @@
 
 //*************** ISSUE WITH IMPLEMENTAITON ************************//
 
-//Potentially the assynchronous nature of JS prevents wallet from being created 
+//Potentially the asynchronous nature of JS prevents wallet from being created 
 // all code below var wallet line 24 is hypothetical code and has not been tested 
 
 //*****************************************************************//
@@ -26,15 +26,29 @@ var wallet;
 //-------***  wallet is undefined at this point  ****--------------//
 
 
-// // Create a New Bitcoin Address
+// Create a New Bitcoin Address
+
 wallet.createAddress({ "chain": 0 }, function callback(err, address) {
     console.dir(address);
 });
 
 
-//oracle
+//setting policy rule
 
-app.post('/names', function(req, res, next) {
+var rule = {
+  id: "webhookRule1",
+  type: "webhook",
+  action: { type: "deny" },
+  condition: { "url": 'https://www.actuaries.org.uk/studying/exam-results/ca1-actuarial-risk-management' }
+};
+
+
+wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w); });
+
+
+//code for the remote endpoint
+
+app.post('/name', function(req, res, next) {
 
  var webhookData = req.body;
 
@@ -58,24 +72,24 @@ app.post('/names', function(req, res, next) {
      var Data = JSON.parse(response.body);
      console.dir(Data.results);
      var name = '';
-     var result;
+     var outcome;
      var address;
 
      Data.results.forEach(function(result) {
 
        if (result.name == "Banyard") {
           name = result.value;
-          result = "name exists";
+          outcome = "name exists";
           address = result.value;
        } else{
-        result = "name does not exist";
+        outcome = "name does not exist";
        }
      });
 
      console.log('name: ' + name);
-     console.log('result: ' + result);
+     console.log('result: ' + outcome);
 
-     if (theOutput === address && result == "name exists") {
+     if (theOutput === address && outcome == "name exists") {
        res.status(200).send({});
      } else {
        res.status(400).send({});
