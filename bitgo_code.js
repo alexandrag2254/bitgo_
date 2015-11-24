@@ -24,16 +24,18 @@ bitgo.wallets().createWalletWithKeychains({passphrase: 'changeme', label: 'apiwa
 var wallet;
 
 //-------***  wallet is undefined at this point  ****--------------//
+//asynchronous -- how to run this code to avoid having wallet being undefined
 
 
 // Create a New Bitcoin Address
 
+//what is chain? 
 wallet.createAddress({ "chain": 0 }, function callback(err, address) {
     console.dir(address);
 });
 
 
-//setting policy rule
+//setting policy rule -------
 
 var rule = {
   id: "webhookRule1",
@@ -42,12 +44,12 @@ var rule = {
   condition: { "url": 'https://www.actuaries.org.uk/studying/exam-results/ca1-actuarial-risk-management' }
 };
 
-
 wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w); });
 
+//--------------------------
 
 //code for the remote endpoint
-
+//how to pull specific information from html page? and what part of the code stipulates this? (in the rule variable?)
 app.post('/name', function(req, res, next) {
 
  var webhookData = req.body;
@@ -66,6 +68,8 @@ app.post('/name', function(req, res, next) {
  var url = "https://www.actuaries.org.uk/studying/exam-results/ca1-actuarial-risk-management";
 
  var request = require('request');
+ 
+ //do we need to run x in order to run the request?
  x = request.get(url, function (error, response, body) {
    if (!error && response.statusCode == 200) {
 
@@ -78,7 +82,7 @@ app.post('/name', function(req, res, next) {
      Data.results.forEach(function(result) {
 
        if (result.name == "Banyard") {
-          name = result.value;
+          name = result.name;
           outcome = "name exists";
           address = result.value;
        } else{
@@ -90,9 +94,9 @@ app.post('/name', function(req, res, next) {
      console.log('result: ' + outcome);
 
      if (theOutput === address && outcome == "name exists") {
-       res.status(200).send({});
+       res.status(200).send({}); // sending bitcoin transaction or message? 
      } else {
-       res.status(400).send({});
+       res.status(400).send({}); // sending bitcoin transaction or message?
      }
    } else {
      console.log('error');
