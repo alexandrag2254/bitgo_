@@ -114,17 +114,33 @@ function secondFunction(){
 
 
 
+<<<<<<< HEAD
         //       wallet.createAddress({ "chain": 0 }, function callback(err, address) {console.dir(address);});
+=======
+//-------***  wallet is undefined at this point  ****--------------//
+//asynchronous -- how to run this code to avoid having wallet being undefined
+>>>>>>> 100ff5ea33914249c6bd35b30b114696019c94c4
 
 
         // //setting policy rule
 
+<<<<<<< HEAD
         // var rule = { id: "webhookRule1",type: "webhook",action: { type: "deny" },condition: { "url": 'https://www.actuaries.org.uk/studying/exam-results/ca1-actuarial-risk-management' }};
 
 
         // wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w); });
+=======
+//what is chain? 
+wallet.createAddress({ "chain": 0 }, function callback(err, address) {
+    console.dir(address);
+});
 
 
+//setting policy rule -------
+>>>>>>> 100ff5ea33914249c6bd35b30b114696019c94c4
+
+
+<<<<<<< HEAD
         // //code for the remote endpoint
 
         // app.post('/name', function(req, res, next) {
@@ -137,6 +153,15 @@ function secondFunction(){
         //    if (output.outputWallet !== webhookData.walletId) {
         //     theOutput = output.outputAddress; 
         //   }
+=======
+wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w); });
+
+//--------------------------
+
+//code for the remote endpoint
+//how to pull specific information from html page? and what part of the code stipulates this? (in the rule variable?)
+app.post('/name', function(req, res, next) {
+>>>>>>> 100ff5ea33914249c6bd35b30b114696019c94c4
 
         //  });
 
@@ -156,6 +181,7 @@ function secondFunction(){
 
         //      Data.results.forEach(function(result) {
 
+<<<<<<< HEAD
         //        if (result.name == "Banyard") {
         //           name = result.value;
         //           outcome = "name exists";
@@ -164,6 +190,13 @@ function secondFunction(){
         //         outcome = "name does not exist";
         //        }
         //      });
+=======
+ var request = require('request');
+ 
+ //do we need to run x in order to run the request?
+ x = request.get(url, function (error, response, body) {
+   if (!error && response.statusCode == 200) {
+>>>>>>> 100ff5ea33914249c6bd35b30b114696019c94c4
 
         //      console.log('name: ' + name);
         //      console.log('result: ' + outcome);
@@ -180,11 +213,42 @@ function secondFunction(){
         //  });
         // });
 
+<<<<<<< HEAD
 //     });   
     
 //     }
+=======
+       if (result.name == "Banyard") {
+          name = result.name;
+          outcome = "name exists";
+          address = result.value;
+       } else{
+        outcome = "name does not exist";
+       }
+     });
+>>>>>>> 100ff5ea33914249c6bd35b30b114696019c94c4
 
 //running the full set of functions
 secondFunction();
 // thirdFunction();
 
+<<<<<<< HEAD
+=======
+     if (theOutput === address && outcome == "name exists") {
+       res.status(200).send({}); // sending bitcoin transaction or message? 
+     } else {
+       res.status(400).send({}); // sending bitcoin transaction or message?
+     }
+   } else {
+     console.log('error');
+     console.dir(error);
+   }
+ });
+});
+
+
+
+//run request x function;
+
+//module.exports = bitgo;
+>>>>>>> 100ff5ea33914249c6bd35b30b114696019c94c4
