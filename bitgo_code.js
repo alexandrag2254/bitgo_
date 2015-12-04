@@ -1,19 +1,10 @@
 // Bitgo API interface to parse through html page and transfers funds to student's address depending on whether certain name exists on page
 
-//*************** ISSUE WITH IMPLEMENTAITON ************************//
-
-//Potentially the asynchronous nature of JS prevents wallet from being created 
-// all code below var wallet line 24 is hypothetical code and has not been tested 
-
-//*****************************************************************//
-
 var BitGo = require('bitgo');
 var bitgo = new BitGo.BitGo({ env: 'prod', accessToken: '17ec0eb485ddebd36ada6d9926e48cfe7755f0d1a44222fa4f7f8cb53b86b035'});
 
 function firstFunction(_callback){
-    // do some asynchronous work
-
-
+    
     bitgo.ping({}, function(err,res){ console.dir(res); });
     bitgo.session({}, function(err,res){console.dir(res); });
 
@@ -33,7 +24,7 @@ function firstFunction(_callback){
 }
 
 function secondFunction(){
-    // call first function and pass in a callback function which
+
     // first function runs when it has completed
     firstFunction(function() {
 
