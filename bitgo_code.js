@@ -4,8 +4,12 @@ var BitGo = require('bitgo');
 var bitgo = new BitGo.BitGo({ env: 'prod', accessToken: '17ec0eb485ddebd36ada6d9926e48cfe7755f0d1a44222fa4f7f8cb53b86b035'});
 
 function firstFunction(_callback){
+<<<<<<< HEAD
     // do some asynchronous work
 
+=======
+    
+>>>>>>> d03a439097d21050e96d93576ea8445fe3bf8dfc
     bitgo.ping({}, function(err,res){ console.dir(res); });
     bitgo.session({}, function(err,res){console.dir(res); });
 
@@ -25,7 +29,7 @@ function firstFunction(_callback){
 }
 
 function secondFunction(){
-    // call first function and pass in a callback function which
+
     // first function runs when it has completed
 
     firstFunction(function() {
