@@ -13,9 +13,15 @@ var bitgo = new BitGo.BitGo({ env: 'prod', accessToken: '17ec0eb485ddebd36ada6d9
 
 
 function firstFunction(_callback){
+<<<<<<< HEAD
 
     // do something asynchronous 
 
+=======
+
+    // do some asynchronous work
+
+>>>>>>> a92b3a0c294df57504d17faa4924179acc363395
     bitgo.ping({}, function(err,res){ console.dir(res); });
     bitgo.session({}, function(err,res){console.dir(res); });
 
