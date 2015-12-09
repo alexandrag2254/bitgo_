@@ -5,7 +5,14 @@
 
 //npm install express 
 var express = require('express');
+
 var app = express();
+
+app.listen(8000, function() {
+  console.log('server listening on: 8000');
+});
+
+
 
 //starting JS interpreter and loading module
 var BitGo = require('bitgo');
@@ -13,15 +20,11 @@ var bitgo = new BitGo.BitGo({ env: 'prod', accessToken: '17ec0eb485ddebd36ada6d9
 
 
 function firstFunction(_callback){
-<<<<<<< HEAD
 
     // do something asynchronous 
 
-=======
-
     // do some asynchronous work
 
->>>>>>> a92b3a0c294df57504d17faa4924179acc363395
     bitgo.ping({}, function(err,res){ console.dir(res); });
     bitgo.session({}, function(err,res){console.dir(res); });
 
@@ -71,42 +74,53 @@ function secondFunction(){
 
 
       //setting a policy rule
+
        var rule = { 
         id: "webhookRule1", 
         type: "webhook",
         action: { type: "deny" },
-        condition: { "url": 'https://57d838c5.ngrok.io' }
+        condition: { "url": 'https://d7718d1c.ngrok.io/name' } //the ngrok -- your callback uri
       };
-      // https://17fc38db.ngrok.com/poll'
+      // 'http s://17fc38db.ngrok.com/poll'
+
+      // console.log(rule);
+
         
-        wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w) });
+        wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w) }); //wallet then accepts rule and waits to receive an update from webhook (coming from our application)
+        // webhook connecting our application to bitgo wallet? 
 
       //-----------------------------------------------------------------------
 
 
         //code for the remote endpoint
 
-        //--- THIS CODE NEEDS WORK! -----------------------------
-        //this gets the appropriate address
-        app.post('/', function(req, res, next){
+            //--- THIS CODE NEEDS WORK! -----------------------------
 
-          console.log('in the app post callback function!!! ')
+            // Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
+            //this accepts a post request on ngrok/name from ----???
 
-          var webhookData = req.body;
+            app.post('/name', function(req, res){
 
-          console.log("WEBHOOD DATA", webhookData);
+              console.log('IN THE POST AREAAA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ')
+              console.log(req);
 
-          var theOutput;
+              var webhookData = req.body;
 
-          webhookData.outputs.forEach(function(output){
-            if(output.outputWallet !== webhookData.walletId){
-              theOutput = output.outputAddrress;
-            }
-          })
-        }) //end of app.post 
+              console.log("WEBHOOD DATA", webhookData);
 
-        //--- ABOVE CODE NEEDS WORK! -----------------------------
+              var theOutput;
 
+              webhookData.outputs.forEach(function(output){
+                if(output.outputWallet !== webhookData.walletId){
+                  theOutput = output.outputAddrress;
+                }
+              })
+            }) //end of app.post 
+
+            //--- ABOVE CODE NEEDS WORK! -----------------------------
+
+
+            //---- start of oracle code that will inform how to cosign
 
 
         //url that we will be getting relevant data (needs to be json data)
@@ -122,6 +136,8 @@ function secondFunction(){
 
            if (!error && response.statusCode == 200) {
 
+
+            //pull from html data?
             var Data = JSON.parse(body);
 
              // console.log("data", Data.data);
@@ -171,13 +187,14 @@ function secondFunction(){
 
              // if ( ( theOutput === address && name ) || outcome == "name exists") {
               if ( outcome == "name exists") {
-               // res.status(200).send({});
+               // res.status(200).send({}); //sending to webhook ngrok a status 200 --> so it will execute transaction? 
                
-               //next step: send bitcoin to the designated address/recipient 
+               //next step: send bitcoin to the designated address/recipient based on multisig 
                console.log('WOHOOOO, name is on the list :) ');
+               return;
 
              } else {
-               // res.status(400).send({});
+               // res.status(400).send({});  //sending to webhook ngrok a status 200 and nothing --> so it will NOT execute transaction?  
                console.log('name not in the list :( ')
              }
 
