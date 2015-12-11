@@ -16,6 +16,7 @@ request({
 
     	Data = $('p', this).text();
     	console.log(Data);
+    	try string to array 
     	// var names = JSON.parse(Data);
 
     	// names.forEach(function(result) {

@@ -86,7 +86,8 @@ function secondFunction(){
       // console.log(rule);
 
         
-        wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w) }); //wallet then accepts rule and waits to receive an update from webhook (coming from our application)
+        wallet.setPolicyRule(rule, function callback(err, w) { console.dir(w) }); 
+        //wallet then accepts rule and waits to receive an update from webhook (coming from our application)
         // webhook connecting our application to bitgo wallet? 
 
       //-----------------------------------------------------------------------
@@ -97,7 +98,7 @@ function secondFunction(){
             //--- THIS CODE NEEDS WORK! -----------------------------
 
             // Webhook notifications are triggered when the specified event occurs, such as an incoming transaction.
-            //this accepts a post request on ngrok/name from ----???
+            //this accepts a post request on ngrok/name from wallet? ----???
 
             app.post('/name', function(req, res){
 
@@ -115,7 +116,7 @@ function secondFunction(){
                   theOutput = output.outputAddrress;
                 }
               })
-            }) //end of app.post 
+            }) //end of app.post
 
             //--- ABOVE CODE NEEDS WORK! -----------------------------
 
