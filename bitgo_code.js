@@ -102,7 +102,6 @@ function secondFunction(){
 
             app.post('/name', function(req, res){
 
-              console.log('IN THE POST AREAAA!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ')
               console.log(req);
 
               var webhookData = req.body;
@@ -122,6 +121,10 @@ function secondFunction(){
 
 
             //---- start of oracle code that will inform how to cosign
+
+      //*******************************************************//
+      //This can be substituted with cheerio code (html parsing)
+      //*******************************************************//
 
 
         //url that we will be getting relevant data (needs to be json data)

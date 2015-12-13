@@ -1,3 +1,13 @@
+//html parsering to gather names from static html page
+
+// *** Issue with this Approach *** //
+
+//specific knowledge of information location on the page 
+    //ie: which section is the list of names under
+
+//**********************************//
+
+
 var request = require('request');
 var cheerio = require('cheerio');
 
@@ -14,9 +24,11 @@ request({
 
     $('div.field-body').each(function() {
 
+        //pulling all names from the "p" tag
+        //Data equals list of names 
     	Data = $('p', this).text();
     	console.log(Data);
-    	try string to array 
+
     	// var names = JSON.parse(Data);
 
     	// names.forEach(function(result) {
@@ -41,13 +53,10 @@ request({
 
 });
 
-// request('https://www.actuaries.org.uk/studying/exam-results/ca1-actuarial-risk-management', function (error, response, html) {
+//---------------------------------------------------------------------\\
 
+//example way of isolating info from particular page 
 
-//   if (!error && response.statusCode == 200) {
-
-//     var $ = cheerio.load(html);
-//     var parsedResults = [];
 
 //     $('span.comhead').each(function(i, element){
 //       // Select the previous element
@@ -65,21 +74,3 @@ request({
 //       // var points = $(subtext).eq(0).text();
 //       // var username = $(subtext).eq(1).text();
 //       // var comments = $(subtext).eq(2).text();
-//       // Our parsed meta data object
-//       var metadata = {
-//         rank: parseInt(rank),
-//         title: title,
-//         url: url,
-//         points: parseInt(points),
-//         username: username,
-//         comments: parseInt(comments)
-//       };
-//       // Push meta-data into parsedResults array
-//       parsedResults.push(a);
-//     });
-
-// 	// console.log('hello')
-//     // Log our finished parse results in the terminal
-//     console.log(parsedResults);
-//   }
-// });
