@@ -51,7 +51,7 @@ request({
     // Log our finished parse results in the terminal
     // console.log(parsedResults);
 
-<<<<<<< HEAD
+
 });
 
 //---------------------------------------------------------------------\\
@@ -75,6 +75,6 @@ request({
 //       // var points = $(subtext).eq(0).text();
 //       // var username = $(subtext).eq(1).text();
 //       // var comments = $(subtext).eq(2).text();
-=======
+
 });
->>>>>>> 57cf0574f7b3a832bb509542cd8ed30652c88eab
+
