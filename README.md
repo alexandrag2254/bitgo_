@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # bitgo_
 bitgo oracle contract 
 
@@ -47,3 +48,6 @@ Questions:
 
 
 
+=======
+# RiskBazaar
+>>>>>>> 2a79b16ca31317a92bde4592a660181fef3a5b1b
